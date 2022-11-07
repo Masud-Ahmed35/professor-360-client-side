@@ -4,7 +4,9 @@ import router from './routes/Routes/Routes';
 
 function App() {
   return (
-    <RouterProvider router={router}></RouterProvider>
+    <div className='w-[85%] mx-auto'>
+      <RouterProvider router={router}></RouterProvider>
+    </div>
   );
 }
 
