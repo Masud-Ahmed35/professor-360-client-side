@@ -24,7 +24,7 @@ const Headers = () => {
             <Navbar.Toggle />
             <Navbar.Collapse>
                 <Link to='/home'>
-                    <Navbar.Link active={true}>Home</Navbar.Link>
+                    <Navbar.Link>Home</Navbar.Link>
                 </Link>
                 <Link to='/services'>
                     <Navbar.Link>Services</Navbar.Link>
