@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Service = ({ service }) => {
-    const { _id, image, name, description, ratings, comment } = service;
+    const { _id, image, name, description, ratings, reviews } = service;
 
     return (
         <div className="">
@@ -21,7 +21,7 @@ const Service = ({ service }) => {
                 </p>
                 <div className='flex justify-between'>
                     <p>Ratings: {ratings}</p>
-                    <p>Reviews: {comment}</p>
+                    <p>Reviews: {reviews}</p>
                 </div>
                 <Link to={`/service-details/${_id}`}>
                     <Button className='w-full' gradientMonochrome="success">
