@@ -10,7 +10,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
 const LogIn = () => {
-    const { googleLogin } = useContext(AuthContext);
+    const { googleLogin, logInWithEmail } = useContext(AuthContext);
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -26,6 +26,21 @@ const LogIn = () => {
             .catch(error => console.error(error.message))
     }
 
+    // ----------------Login In With Email And Password-------------------
+    const handleLoginWithEmail = event => {
+        event.preventDefault();
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+
+        logInWithEmail(email, password)
+            .then(result => {
+                console.log(result.user);
+                toast.success('Login Successful');
+            })
+            .catch(error => console.error(error))
+    }
+
+
     return (
         <div className='my-10 lg:flex lg:divide-x-2'>
             <div>
@@ -35,7 +50,7 @@ const LogIn = () => {
                 <div className='flex justify-center mb-5'>
                     <img className='w-40' src={loginLogo2} alt="" />
                 </div>
-                <form className="flex flex-col gap-4 lg:w-2/3 mx-auto">
+                <form onSubmit={handleLoginWithEmail} className="flex flex-col gap-4 lg:w-2/3 mx-auto">
                     <div>
                         <div className="mb-2 block">
                             <Label
