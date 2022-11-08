@@ -1,9 +1,22 @@
-import { Avatar, Navbar } from 'flowbite-react';
-import React from 'react';
+import { Avatar, Button, Navbar } from 'flowbite-react';
+import React, { useContext } from 'react';
+import { FaUserAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import logo from '../../../assets/images/logo.png'
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Headers = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                toast.success("Log Out Successful")
+            })
+            .catch(error => console.error(error))
+    }
+
     return (
         <Navbar
             fluid={true}
@@ -32,26 +45,46 @@ const Headers = () => {
                 <Link to='/blog'>
                     <Navbar.Link>Blog</Navbar.Link>
                 </Link>
-                <Link to='/login'>
-                    <Navbar.Link>Login</Navbar.Link>
-                </Link>
-                <Link>
-                    <Navbar.Link>My Reviews</Navbar.Link>
-                </Link>
-                <Link>
-                    <Navbar.Link>Add Service</Navbar.Link>
-                </Link>
-                <Link>
-                    <Navbar.Link>Log Out</Navbar.Link>
-                </Link>
-                <Avatar
-                    className=''
-                    img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                    rounded={true}
-                    bordered={true}
-                    status="online"
-                    statusPosition="bottom-right"
-                />
+                <>
+                    {
+                        user?.uid ?
+                            <>
+                                <Link>
+                                    <Navbar.Link>My Reviews</Navbar.Link>
+                                </Link>
+                                <Link>
+                                    <Navbar.Link>Add Service</Navbar.Link>
+                                </Link>
+                                <Button onClick={handleLogOut} color='gray'>
+                                    <Navbar.Link>Log Out</Navbar.Link>
+                                </Button>
+                                <>
+                                    {
+                                        user?.photoURL ?
+                                            <>
+                                                <Avatar
+                                                    img={user?.photoURL}
+                                                    rounded={true}
+                                                    bordered={true}
+                                                    status="online"
+                                                    statusPosition="bottom-right"
+                                                />
+                                            </>
+                                            :
+                                            <>
+                                                <FaUserAlt></FaUserAlt>
+                                            </>
+                                    }
+                                </>
+                            </>
+                            :
+                            <>
+                                <Link to='/login'>
+                                    <Navbar.Link>Login</Navbar.Link>
+                                </Link>
+                            </>
+                    }
+                </>
             </Navbar.Collapse>
         </Navbar>
     );

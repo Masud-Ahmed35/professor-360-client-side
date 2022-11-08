@@ -1,8 +1,9 @@
 import { Button, Card } from 'flowbite-react';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Service = ({ service }) => {
-    const { image, name, description, ratings, comment } = service;
+    const { _id, image, name, description, ratings, comment } = service;
 
     return (
         <div className="">
@@ -22,12 +23,11 @@ const Service = ({ service }) => {
                     <p>Ratings: {ratings}</p>
                     <p>Reviews: {comment}</p>
                 </div>
-                <Button
-                    className='w-full'
-                    gradientMonochrome="success"
-                >
-                    View Details
-                </Button>
+                <Link to={`/service-details/${_id}`}>
+                    <Button className='w-full' gradientMonochrome="success">
+                        View Details
+                    </Button>
+                </Link>
             </Card>
         </div>
     );
