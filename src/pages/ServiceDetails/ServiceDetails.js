@@ -1,13 +1,30 @@
-import { Button, Label, TextInput } from 'flowbite-react';
-import React, { useContext } from 'react';
+import { Button, Label, Table, TextInput } from 'flowbite-react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import ShowReviews from '../ShowReviews/ShowReviews';
 
 const ServiceDetails = () => {
+    const [allReviews, setAllReviews] = useState([]);
     const { user } = useContext(AuthContext);
     const data = useLoaderData();
     const { _id, name, image, reviews, ratings, price, description } = data.data;
+
+    useEffect(() => {
+        fetch(`http://localhost:7007/reviews/${_id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    setAllReviews(data.data)
+                }
+                else {
+                    toast.error(data.error);
+                }
+            })
+            .catch(err => toast.error(err.message))
+
+    }, [_id])
 
     const handleReviewSubmit = event => {
         event.preventDefault();
@@ -112,6 +129,38 @@ const ServiceDetails = () => {
                         </>
                 }
 
+            </div>
+
+            {/* --------------Show All Reviews-------------- */}
+            <div className='my-10'>
+                <h2 className='text-2xl font-bold text-center mb-7'>All Reviews for the service: <span className='font-extrabold text-yellow-600 italic'>{name}</span></h2>
+                <div>
+
+                    <Table hoverable={true}>
+                        <Table.Head>
+                            <Table.HeadCell>
+                                <h2 className='flex justify-center'>User Info</h2>
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Service Name
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Ratings
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                User Opinion
+                            </Table.HeadCell>
+                        </Table.Head>
+                        <Table.Body className="divide-y">
+                            {
+                                allReviews.map(allReview => <ShowReviews
+                                    key={allReview._id}
+                                    allReview={allReview}
+                                ></ShowReviews>)
+                            }
+                        </Table.Body>
+                    </Table>
+                </div>
             </div>
         </>
     );
