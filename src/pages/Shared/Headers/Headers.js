@@ -1,10 +1,11 @@
 import { Avatar, Button, Navbar } from 'flowbite-react';
 import React, { useContext } from 'react';
 import { FaUserAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import logo from '../../../assets/images/logo.png'
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import './Header.css'
 
 const Headers = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -22,39 +23,37 @@ const Headers = () => {
             fluid={true}
             rounded={true}
         >
-            <Link to='/'>
-                <Navbar.Brand>
-                    <img
-                        src={logo}
-                        className="mr-3 h-14"
-                        alt="Website Logo"
-                    />
-                    <span className="self-center whitespace-nowrap text-2xl font-bold italic">
-                        Professor 360
-                    </span>
-                </Navbar.Brand>
+            <Link to='/' className='flex justify-center items-center'>
+                <img
+                    src={logo}
+                    className="mr-3 h-14"
+                    alt="Website Logo"
+                />
+                <span className="self-center whitespace-nowrap text-2xl font-bold italic">
+                    Professor 360
+                </span>
             </Link>
             <Navbar.Toggle />
             <Navbar.Collapse>
-                <Link to='/home'>
-                    <Navbar.Link>Home</Navbar.Link>
-                </Link>
-                <Link to='/services'>
-                    <Navbar.Link>Services</Navbar.Link>
-                </Link>
-                <Link to='/blog'>
-                    <Navbar.Link>Blog</Navbar.Link>
-                </Link>
+                <NavLink to='/home' className='flex items-center'>
+                    Home
+                </NavLink>
+                <NavLink to='/services' className='flex items-center'>
+                    Services
+                </NavLink>
+                <NavLink to='/blog' className='flex items-center'>
+                    Blog
+                </NavLink>
                 <>
                     {
                         user?.uid ?
                             <>
-                                <Link>
-                                    <Navbar.Link>My Reviews</Navbar.Link>
-                                </Link>
-                                <Link>
-                                    <Navbar.Link>Add Service</Navbar.Link>
-                                </Link>
+                                <NavLink className='flex items-center'>
+                                    My Reviews
+                                </NavLink>
+                                <NavLink className='flex items-center'>
+                                    Add Service
+                                </NavLink>
                                 <Button onClick={handleLogOut} color='gray'>
                                     <Navbar.Link>Log Out</Navbar.Link>
                                 </Button>
@@ -80,9 +79,9 @@ const Headers = () => {
                             </>
                             :
                             <>
-                                <Link to='/login'>
-                                    <Navbar.Link>Login</Navbar.Link>
-                                </Link>
+                                <NavLink to='/login' className='flex items-center'>
+                                    Login
+                                </NavLink>
                             </>
                     }
                 </>
