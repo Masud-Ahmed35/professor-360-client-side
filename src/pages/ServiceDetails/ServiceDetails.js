@@ -1,6 +1,7 @@
 import { Button, Label, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const ServiceDetails = () => {
@@ -20,7 +21,21 @@ const ServiceDetails = () => {
             email: user?.email,
             photo: user?.photoURL
         }
-        console.log(review);
+        fetch(`http://localhost:7007/reviews`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(review)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.data.insertedId) {
+                    toast.success('Your Review Submitted Successfully');
+                    event.target.reset();
+                }
+            })
+            .catch(error => toast.error(error.message))
     }
 
 
