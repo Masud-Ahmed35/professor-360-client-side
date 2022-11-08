@@ -6,13 +6,14 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import registerLogo2 from '../../assets/images/registerLogo2.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
 const Register = () => {
-    const { googleLogin, createUser, addNameAndPhoto } = useContext(AuthContext);
+    const { googleLogin, gitHubLogin, createUser, addNameAndPhoto } = useContext(AuthContext);
 
     const googleProvider = new GoogleAuthProvider();
+    const gitHubProvider = new GithubAuthProvider();
 
     // -------------------Google Login-----------------------
     const handleGoogleLogin = event => {
@@ -24,6 +25,18 @@ const Register = () => {
                 toast.success('Login Successful With Google')
             })
             .catch(error => console.error(error.message))
+    }
+
+    // -------------------GitHub Login-----------------------
+    const handleGitHubLogin = event => {
+        event.preventDefault();
+
+        gitHubLogin(gitHubProvider)
+            .then(result => {
+                console.log(result.user);
+                toast.success('Login Successful With GitHub')
+            })
+            .catch(error => toast.error(error.message))
     }
 
     // ------------------Registration--------------------
@@ -134,7 +147,7 @@ const Register = () => {
                         </Button>
                     </Link>
                     <Link>
-                        <Button color="gray" className='w-full'>
+                        <Button onClick={handleGitHubLogin} color="gray" className='w-full'>
                             <FaGithub className='w-6 h-6 mr-2' />
                             <p>GitHub</p>
                         </Button>
