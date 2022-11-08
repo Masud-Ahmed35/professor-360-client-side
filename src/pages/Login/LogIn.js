@@ -1,5 +1,5 @@
 import { Button, Label, TextInput } from 'flowbite-react';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import login from '../../assets/images/login.png'
 import { FcGoogle } from "react-icons/fc";
@@ -10,7 +10,8 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
 const LogIn = () => {
-    const { googleLogin, logInWithEmail } = useContext(AuthContext);
+    const [resetEmail, setResetEmail] = useState('');
+    const { googleLogin, logInWithEmail, resetPassword } = useContext(AuthContext);
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -40,6 +41,21 @@ const LogIn = () => {
             .catch(error => console.error(error))
     }
 
+    const handleResetPassword = () => {
+        if (!resetEmail) {
+            toast.warning('Please Provide an Email Address.');
+            return;
+        }
+        const confirmation = window.confirm('Are you sure, You want to reset your password?');
+        if (confirmation) {
+            resetPassword(resetEmail)
+                .then(() => {
+                    toast.info('An email is sent to your email for reset password.');
+                })
+                .catch(error => toast.error(error.message))
+        }
+    }
+
 
     return (
         <div className='my-10 lg:flex lg:divide-x-2'>
@@ -64,6 +80,7 @@ const LogIn = () => {
                             name='email'
                             placeholder="example@gmail.com"
                             required={true}
+                            onBlur={e => setResetEmail(e.target.value)}
                         />
                     </div>
                     <div>
@@ -82,7 +99,7 @@ const LogIn = () => {
                         />
                     </div>
                     <div className="flex justify-end text-xs">
-                        <Link>Forgot Your Password?</Link>
+                        <Link onClick={handleResetPassword} className='hover:underline'>Forgot Your Password?</Link>
                     </div>
                     <Button type="submit">
                         Login
@@ -108,7 +125,7 @@ const LogIn = () => {
                     </Link>
                 </div>
                 <p className="text-sm text-center mt-5">Don't have an account?
-                    <Link to='/register' className="underline ml-1 text-amber-600 font-semibold">Sign up</Link>
+                    <Link to='/register' className="hover:underline ml-1 text-amber-600 font-semibold">Sign up</Link>
                 </p>
             </div>
         </div>

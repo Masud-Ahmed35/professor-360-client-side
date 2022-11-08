@@ -10,7 +10,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
 const Register = () => {
-    const { googleLogin, createUser } = useContext(AuthContext);
+    const { googleLogin, createUser, addNameAndPhoto } = useContext(AuthContext);
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -38,9 +38,13 @@ const Register = () => {
         createUser(user?.email, user?.password)
             .then(result => {
                 console.log(result.user);
-                toast.success('Successfully Created Your Account')
+                toast.success('Successfully Created Your Account');
+
+                addNameAndPhoto(user?.name, user?.photo)
+                    .then(() => { })
+                    .catch(error => toast.error(error.message))
             })
-            .catch(error => console.error(error))
+            .catch(error => toast.error(error.message))
     }
 
     return (

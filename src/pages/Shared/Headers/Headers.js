@@ -63,6 +63,7 @@ const Headers = () => {
                                         user?.photoURL ?
                                             <>
                                                 <Avatar
+                                                    title={user?.displayName}
                                                     img={user?.photoURL}
                                                     rounded={true}
                                                     bordered={true}
