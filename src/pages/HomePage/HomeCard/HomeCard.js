@@ -1,4 +1,6 @@
+import { Button } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Service from '../../Service/Service';
 
@@ -30,6 +32,9 @@ const HomeCard = () => {
                         service={service}
                     ></Service>)
                 }
+            </div>
+            <div className='flex justify-center my-10'>
+                <Link to='/services'><Button className='bg-amber-600 w-32'>See All</Button></Link>
             </div>
         </div>
     );
