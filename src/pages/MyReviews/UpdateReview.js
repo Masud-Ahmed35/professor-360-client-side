@@ -2,10 +2,11 @@ import { Button, Label, TextInput } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useTitle from '../../hooks/useTitle';
 
 const UpdateReview = () => {
+    useTitle('Update-Review');
     const [review, setReview] = useState({});
-    const [refresh, setRefresh] = useState(true);
     const navigate = useNavigate();
     const router = useParams();
     const { id } = router;
@@ -20,7 +21,7 @@ const UpdateReview = () => {
             })
             .catch(error => toast.error(error.message))
 
-    }, [id, refresh])
+    }, [id])
 
     const handleUpdate = (event) => {
         event.preventDefault();

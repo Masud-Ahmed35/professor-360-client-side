@@ -3,9 +3,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import ShowReviews from '../ShowReviews/ShowReviews';
 
 const ServiceDetails = () => {
+    useTitle('Service-Details')
     const [allReviews, setAllReviews] = useState([]);
     const [refresh, setRefresh] = useState(false);
     const { user } = useContext(AuthContext);

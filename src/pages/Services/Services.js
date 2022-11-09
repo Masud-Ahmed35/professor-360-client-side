@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import useTitle from '../../hooks/useTitle';
 import Service from '../Service/Service';
 
 const Services = () => {
     const [services, setServices] = useState([]);
+    useTitle('Services');
 
     useEffect(() => {
         fetch(`http://localhost:7007/services`)
