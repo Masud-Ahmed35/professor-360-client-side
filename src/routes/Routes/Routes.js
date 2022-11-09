@@ -4,6 +4,7 @@ import Home from "../../pages/HomePage/Home/Home";
 import LogIn from "../../pages/Login/LogIn";
 import Register from "../../pages/Login/Register";
 import MyReviews from "../../pages/MyReviews/MyReviews";
+import UpdateReview from "../../pages/MyReviews/UpdateReview";
 import ServiceDetails from "../../pages/ServiceDetails/ServiceDetails";
 import Services from "../../pages/Services/Services";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path: '/my-reviews',
                 element: <PrivateRoutes><MyReviews></MyReviews></PrivateRoutes>
+            },
+            {
+                path: '/update-review/:id',
+                element: <PrivateRoutes><UpdateReview></UpdateReview></PrivateRoutes>
             },
             {
                 path: '/login',

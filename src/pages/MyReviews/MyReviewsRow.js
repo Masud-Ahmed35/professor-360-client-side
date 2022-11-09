@@ -1,7 +1,7 @@
 import { Button, Table } from 'flowbite-react';
 import React from 'react';
 
-const MyReviewsRow = ({ myReview, handleDeleteReview }) => {
+const MyReviewsRow = ({ myReview, handleDeleteReview, handleUpdateReview }) => {
     const { _id, serviceName, ratings, message } = myReview;
 
     return (
@@ -16,7 +16,7 @@ const MyReviewsRow = ({ myReview, handleDeleteReview }) => {
                 {message}
             </Table.Cell>
             <Table.Cell>
-                <Button color="success" pill={true}>Update</Button>
+                <Button onClick={() => handleUpdateReview(_id)} color="success" pill={true}>Update</Button>
             </Table.Cell>
             <Table.Cell>
                 <Button onClick={() => handleDeleteReview(_id)} color="failure" pill={true}>Delete</Button>
