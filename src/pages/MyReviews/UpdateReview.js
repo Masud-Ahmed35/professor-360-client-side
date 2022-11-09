@@ -23,11 +23,15 @@ const UpdateReview = () => {
 
     }, [id])
 
+    const setTime = new Date();
+    const time = setTime.getTime();
+
     const handleUpdate = (event) => {
         event.preventDefault();
         const review = {
             ratings: event.target.ratings.value,
-            message: event.target.message.value
+            message: event.target.message.value,
+            time: time
         }
         fetch(`http://localhost:7007/reviews/${id}`, {
             method: 'PATCH',

@@ -14,7 +14,7 @@ const ProjectOverview = () => {
                     <img src="https://source.unsplash.com/80x80/?portrait?1" alt="" className="w-20 h-20 bg-center bg-cover rounded-md dark:bg-gray-500 dark:bg-gray-700" />
                     <div>
                         <p className="leading-tight text-base font-bold">Professor M</p>
-                        <p className="text-xs mt-1">Founder & CEO</p>
+                        <p className="text-xs mt-1 italic">Founder & CEO</p>
                         <Link className="flex items-center py-2 space-x-1 text-sm dark:text-violet-400" to="/">
                             <span>Read full story</span>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">

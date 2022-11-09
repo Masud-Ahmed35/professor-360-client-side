@@ -4,13 +4,14 @@ import logo from '../../../assets/images/logo.png'
 
 const Footers = () => {
     return (
-        <Footer container={true} className='mt-10'>
+        <Footer container={true} className='mt-10 bg-zinc-100'>
             <div className="w-full text-center">
                 <div className="w-full sm:flex sm:items-center sm:justify-between">
                     <Footer.Brand
                         href="#"
                         src={logo}
                         alt="Website Logo"
+                        className='italic font-medium font-mono'
                         name="Professor 360"
                     />
                     <Footer.LinkGroup className='flex justify-evenly mt-5'>

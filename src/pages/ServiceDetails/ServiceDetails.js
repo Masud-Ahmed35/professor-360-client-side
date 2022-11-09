@@ -30,6 +30,9 @@ const ServiceDetails = () => {
 
     }, [_id, refresh])
 
+    const setTime = new Date();
+    const time = setTime.getTime();
+
     const handleReviewSubmit = event => {
         event.preventDefault();
 
@@ -40,7 +43,8 @@ const ServiceDetails = () => {
             message: event.target.message.value,
             userName: user?.displayName,
             email: user?.email,
-            photo: user?.photoURL
+            photo: user?.photoURL,
+            time: time
         }
         fetch(`http://localhost:7007/reviews`, {
             method: "POST",

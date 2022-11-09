@@ -5,6 +5,10 @@ import useTitle from '../../hooks/useTitle';
 
 const AddService = () => {
     useTitle('Add-Service');
+
+    const setTime = new Date();
+    const time = setTime.getTime();
+
     const handleAddService = event => {
         event.preventDefault();
         const service = {
@@ -14,6 +18,7 @@ const AddService = () => {
             duration: event.target.duration.value,
             image: event.target.image.value,
             description: event.target.description.value,
+            time: time
         }
         fetch(`http://localhost:7007/add-service`, {
             method: 'POST',

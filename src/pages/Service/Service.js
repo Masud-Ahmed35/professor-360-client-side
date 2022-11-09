@@ -7,7 +7,7 @@ const Service = ({ service }) => {
 
     return (
         <div className="">
-            <Card>
+            <Card className='h-[550px]'>
                 <div className='flex justify-center items-center'>
                     <img className='w-72 h-60'
                         src={image} alt='' />
