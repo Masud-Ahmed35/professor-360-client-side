@@ -1,5 +1,6 @@
 import { Button, Label, Table, TextInput } from 'flowbite-react';
 import React, { useContext, useEffect, useState } from 'react';
+import { PhotoView } from 'react-photo-view';
 import { Link, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
@@ -69,7 +70,9 @@ const ServiceDetails = () => {
             <div className="w-3/4 mx-auto my-10 lg:w-1/2 lg:mx-auto p-4 shadow-md">
                 <div className="">
                     <div className="space-y-2 flex justify-center">
-                        <img src={image} alt="" className="rounded-md h-64 lg:h-80" />
+                        <PhotoView src={image}>
+                            <img src={image} alt="" className="rounded-md h-64 lg:h-80" />
+                        </PhotoView>
                     </div>
                     <div className="px-4">
                         <div className='flex justify-between mb-7 mt-5'>

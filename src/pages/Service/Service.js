@@ -1,5 +1,6 @@
 import { Button, Card } from 'flowbite-react';
 import React from 'react';
+import { PhotoView } from 'react-photo-view';
 import { Link } from 'react-router-dom';
 
 const Service = ({ service }) => {
@@ -9,8 +10,10 @@ const Service = ({ service }) => {
         <div className="">
             <Card className='h-[550px]'>
                 <div className='flex justify-center items-center'>
-                    <img className='w-72 h-60'
-                        src={image} alt='' />
+                    <PhotoView src={image}>
+                        <img className='w-72 h-60'
+                            src={image} alt='' />
+                    </PhotoView>
                 </div>
 
                 <h5 className="text-2xl font-bold">
