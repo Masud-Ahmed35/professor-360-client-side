@@ -48,10 +48,10 @@ const Headers = () => {
                     {
                         user?.uid ?
                             <>
-                                <NavLink className='flex items-center'>
+                                <NavLink to='/my-reviews' className='flex items-center'>
                                     My Reviews
                                 </NavLink>
-                                <NavLink className='flex items-center'>
+                                <NavLink to='/add-service' className='flex items-center'>
                                     Add Service
                                 </NavLink>
                                 <Button onClick={handleLogOut} color='gray'>

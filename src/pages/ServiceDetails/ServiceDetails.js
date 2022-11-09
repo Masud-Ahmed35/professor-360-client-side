@@ -9,7 +9,7 @@ const ServiceDetails = () => {
     const [allReviews, setAllReviews] = useState([]);
     const { user } = useContext(AuthContext);
     const data = useLoaderData();
-    const { _id, name, image, reviews, ratings, price, description } = data.data;
+    const { _id, name, image, type, duration, price, description } = data.data;
 
     useEffect(() => {
         fetch(`http://localhost:7007/reviews/${_id}`)
@@ -70,8 +70,8 @@ const ServiceDetails = () => {
                         </div>
                         <p className="leading-snug">{description}</p>
                         <div className='flex justify-between my-7 font-semibold text-lg'>
-                            <p>Ratings: {ratings}</p>
-                            <p>Reviews: {reviews}</p>
+                            <p>Type: {type}</p>
+                            <p>Duration: {duration} days</p>
                         </div>
                         <Link to='/services'>
                             <Button className='w-3/4 mx-auto' gradientMonochrome="success">Go Back</Button>
