@@ -1,10 +1,34 @@
 import { Button, Label, Textarea, TextInput } from 'flowbite-react';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const AddService = () => {
 
     const handleAddService = event => {
-
+        event.preventDefault();
+        const service = {
+            name: event.target.serviceName.value,
+            price: event.target.price.value,
+            type: event.target.type.value,
+            duration: event.target.duration.value,
+            image: event.target.image.value,
+            description: event.target.description.value,
+        }
+        fetch(`http://localhost:7007/add-service`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(service)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.data.insertedId) {
+                    toast.success(data.message);
+                    event.target.reset();
+                }
+            })
+            .catch(error => toast.error(error.message))
     }
 
     return (
@@ -23,6 +47,7 @@ const AddService = () => {
                             id="base1"
                             type="text"
                             name='serviceName'
+                            placeholder='Type your service name'
                             sizing="md"
                         />
                     </div>
@@ -37,6 +62,7 @@ const AddService = () => {
                             id="base2"
                             type="text"
                             name='price'
+                            placeholder='Price'
                             sizing="md"
                         />
                     </div>
@@ -46,13 +72,14 @@ const AddService = () => {
                         <div className="mb-2 block">
                             <Label
                                 htmlFor="base3"
-                                value="Type"
+                                value="Service Type"
                             />
                         </div>
                         <TextInput
-                            id="base"
+                            id="base3"
                             type="text"
                             name='type'
+                            placeholder='Example: Easy, Hard, Advanced'
                             sizing="md"
                         />
                     </div>
@@ -67,6 +94,7 @@ const AddService = () => {
                             id="base4"
                             type="text"
                             name='duration'
+                            placeholder='Enter duration as days'
                             sizing="md"
                         />
                     </div>
@@ -82,6 +110,7 @@ const AddService = () => {
                         id="base5"
                         type="text"
                         name='image'
+                        placeholder='Enter services image url'
                         sizing="md"
                     />
                 </div>

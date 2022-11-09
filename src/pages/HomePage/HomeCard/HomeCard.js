@@ -6,7 +6,7 @@ const HomeCard = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:7007/services`)
+        fetch(`http://localhost:7007/home-services`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
