@@ -3,7 +3,7 @@ import myPhoto from '../../../assets/images/myPhoto.jpg'
 
 const DeveloperInfo = () => {
     return (
-        <div className='flex justify-center'>
+        <div className='flex justify-center my-10'>
             <div>
                 <h1 className='text-center text-3xl font-bold mb-7'>Project Developer Contact Info</h1>
                 <div className="max-w-md p-8 sm:flex sm:space-x-6 bg-gray-100">

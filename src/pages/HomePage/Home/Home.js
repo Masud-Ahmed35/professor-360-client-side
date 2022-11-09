@@ -3,6 +3,7 @@ import useTitle from '../../../hooks/useTitle';
 import Slider from '../Carousel/Slider';
 import DeveloperInfo from '../DeveloperInfo/DeveloperInfo';
 import HomeCard from '../HomeCard/HomeCard';
+import StaticReview from '../StaticReview/StaticReview';
 
 const Home = () => {
     useTitle('Home');
@@ -11,6 +12,7 @@ const Home = () => {
         <div>
             <Slider></Slider>
             <HomeCard></HomeCard>
+            <StaticReview></StaticReview>
             <DeveloperInfo></DeveloperInfo>
         </div>
     );
