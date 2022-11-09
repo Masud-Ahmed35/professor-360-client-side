@@ -7,6 +7,7 @@ import ShowReviews from '../ShowReviews/ShowReviews';
 
 const ServiceDetails = () => {
     const [allReviews, setAllReviews] = useState([]);
+    const [refresh, setRefresh] = useState(false);
     const { user } = useContext(AuthContext);
     const data = useLoaderData();
     const { _id, name, image, type, duration, price, description } = data.data;
@@ -17,6 +18,7 @@ const ServiceDetails = () => {
             .then(data => {
                 if (data.success) {
                     setAllReviews(data.data)
+                    setRefresh(!refresh)
                 }
                 else {
                     toast.error(data.error);
@@ -24,7 +26,7 @@ const ServiceDetails = () => {
             })
             .catch(err => toast.error(err.message))
 
-    }, [_id])
+    }, [_id, refresh])
 
     const handleReviewSubmit = event => {
         event.preventDefault();
