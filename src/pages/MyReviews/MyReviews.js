@@ -11,6 +11,7 @@ const MyReviews = () => {
     const { user } = useContext(AuthContext);
     const [myReviews, setMyReviews] = useState([]);
     const [refresh, setRefresh] = useState(true);
+    const [count, setCount] = useState(0);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,6 +20,7 @@ const MyReviews = () => {
             .then(data => {
                 if (data.success) {
                     setMyReviews(data.data);
+                    setCount(data.data.length);
                 }
             })
 
@@ -49,35 +51,44 @@ const MyReviews = () => {
 
     return (
         <div className='my-10'>
-            <Table>
-                <Table.Head>
-                    <Table.HeadCell>
-                        Service Name
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Ratings
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Review
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Update Action
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Delete Action
-                    </Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="divide-y">
-                    {
-                        myReviews.map(myReview => <MyReviewsRow
-                            key={myReview._id}
-                            myReview={myReview}
-                            handleDeleteReview={handleDeleteReview}
-                            handleUpdateReview={handleUpdateReview}
-                        ></MyReviewsRow>)
-                    }
-                </Table.Body>
-            </Table>
+            {
+                count ?
+                    <>
+                        <Table>
+                            <Table.Head>
+                                <Table.HeadCell>
+                                    Service Name
+                                </Table.HeadCell>
+                                <Table.HeadCell>
+                                    Ratings
+                                </Table.HeadCell>
+                                <Table.HeadCell>
+                                    Review
+                                </Table.HeadCell>
+                                <Table.HeadCell>
+                                    Update Action
+                                </Table.HeadCell>
+                                <Table.HeadCell>
+                                    Delete Action
+                                </Table.HeadCell>
+                            </Table.Head>
+                            <Table.Body className="divide-y">
+                                {
+                                    myReviews.map(myReview => <MyReviewsRow
+                                        key={myReview._id}
+                                        myReview={myReview}
+                                        handleDeleteReview={handleDeleteReview}
+                                        handleUpdateReview={handleUpdateReview}
+                                    ></MyReviewsRow>)
+                                }
+                            </Table.Body>
+                        </Table>
+                    </>
+                    :
+                    <div className='flex justify-center items-center my-60'>
+                        <h1 className='text-2xl font-bold lg:text-5xl text-gray-500'>---No Review Given Yet---</h1>
+                    </div>
+            }
         </div>
     );
 };
