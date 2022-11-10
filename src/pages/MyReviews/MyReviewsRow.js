@@ -1,5 +1,6 @@
 import { Button, Table } from 'flowbite-react';
 import React from 'react';
+import { FaStar } from 'react-icons/fa';
 
 const MyReviewsRow = ({ myReview, handleDeleteReview, handleUpdateReview }) => {
     const { _id, serviceName, ratings, message } = myReview;
@@ -10,7 +11,15 @@ const MyReviewsRow = ({ myReview, handleDeleteReview, handleUpdateReview }) => {
                 {serviceName}
             </Table.Cell>
             <Table.Cell>
-                {ratings}
+                <div className='flex'>
+                    {
+                        [...Array(Math.round(ratings)).keys()].map(index => <p
+                            key={index}
+                        >
+                            <FaStar className='text-orange-500' />
+                        </p>)
+                    }
+                </div>
             </Table.Cell>
             <Table.Cell>
                 {message}

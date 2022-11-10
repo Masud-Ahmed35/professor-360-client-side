@@ -55,6 +55,7 @@ const AddService = () => {
                             name='serviceName'
                             placeholder='Type your service name'
                             sizing="md"
+                            required={true}
                         />
                     </div>
                     <div className='w-1/2'>
@@ -70,6 +71,7 @@ const AddService = () => {
                             name='price'
                             placeholder='Price'
                             sizing="md"
+                            required={true}
                         />
                     </div>
                 </div>
@@ -87,6 +89,7 @@ const AddService = () => {
                             name='type'
                             placeholder='Example: Easy, Hard, Advanced'
                             sizing="md"
+                            required={true}
                         />
                     </div>
                     <div className='w-1/2'>
@@ -102,6 +105,7 @@ const AddService = () => {
                             name='duration'
                             placeholder='Enter duration as days'
                             sizing="md"
+                            required={true}
                         />
                     </div>
                 </div>
@@ -118,6 +122,7 @@ const AddService = () => {
                         name='image'
                         placeholder='Enter services image url'
                         sizing="md"
+                        required={true}
                     />
                 </div>
                 <div id="textarea">

@@ -111,6 +111,7 @@ const ServiceDetails = () => {
                                         name='rating'
                                         sizing="sm"
                                         placeholder='Please give a rating out of 5'
+                                        required={true}
                                     />
                                 </div>
                                 <div>
@@ -125,7 +126,8 @@ const ServiceDetails = () => {
                                         type="text"
                                         name='message'
                                         sizing="lg"
-                                        placeholder='Your Message'
+                                        placeholder='Write your review'
+                                        required={true}
                                     />
                                 </div>
                                 <Button type="submit" className='w-3/4 mx-auto' gradientMonochrome="success">Submit Your Review</Button>
