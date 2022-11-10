@@ -24,6 +24,7 @@ This is online based review-given web application. Here, you can choose a servic
 * [Tailwind css](https://tailwindcss.com/docs/installation)
 * [React-Flowbite](https://flowbite-react.com/)
 * [Mamba UI](https://www.mambaui.com/components)
+* [firebase](https://firebase.google.com/)
 * [Nodejs](https://nodejs.org/en/about/)
 * [expressjs](https://expressjs.com/en/starter/installing.html)
 * [mongodb](https://www.mongodb.com/atlas/database)
