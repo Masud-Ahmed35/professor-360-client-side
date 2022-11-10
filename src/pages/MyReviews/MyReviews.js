@@ -8,15 +8,26 @@ import MyReviewsRow from './MyReviewsRow';
 
 const MyReviews = () => {
     useTitle('My-Reviews');
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [myReviews, setMyReviews] = useState([]);
     const [refresh, setRefresh] = useState(true);
     const [count, setCount] = useState(0);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:7007/reviews?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:7007/reviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('access-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    toast.error(`${res.status} Unauthorized Access`)
+                    logOut()
+                }
+
+                return res.json()
+            })
             .then(data => {
                 if (data.success) {
                     setMyReviews(data.data);

@@ -54,9 +54,29 @@ const LogIn = () => {
 
         logInWithEmail(email, password)
             .then(result => {
-                console.log(result.user);
+                const user = result.user;
+                console.log(user);
                 toast.success('Login Successful');
-                navigate(from, { replace: true });
+
+                const currentUser = {
+                    email: user.email
+                }
+                // Get the JWT Access Token
+                fetch(`http://localhost:7007/jwt`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem('access-token', data.token);
+
+                        navigate(from, { replace: true });
+                    })
+
             })
             .catch(error => console.error(error))
     }
