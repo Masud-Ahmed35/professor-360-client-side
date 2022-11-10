@@ -61,6 +61,7 @@ const LogIn = () => {
                 const currentUser = {
                     email: user.email
                 }
+
                 // Get the JWT Access Token
                 fetch(`http://localhost:7007/jwt`, {
                     method: 'POST',
@@ -78,7 +79,7 @@ const LogIn = () => {
                     })
 
             })
-            .catch(error => console.error(error))
+            .catch(error => toast.error(error.message))
     }
 
     const handleResetPassword = () => {
