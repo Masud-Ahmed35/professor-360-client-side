@@ -28,9 +28,3 @@ This is online based review-given web application. Here, you can choose a servic
 * [Nodejs](https://nodejs.org/en/about/)
 * [expressjs](https://expressjs.com/en/starter/installing.html)
 * [mongodb](https://www.mongodb.com/atlas/database)
-
-
-
-
-
-
