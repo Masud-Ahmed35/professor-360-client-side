@@ -1,3 +1,4 @@
+import { Button, Spinner } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import useTitle from '../../hooks/useTitle';
@@ -5,14 +6,17 @@ import Service from '../Service/Service';
 
 const Services = () => {
     const [services, setServices] = useState([]);
+    const [loading, setLoading] = useState(true);
     useTitle('Services');
+
 
     useEffect(() => {
         fetch(`http://localhost:7007/services`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    setServices(data.data)
+                    setServices(data.data);
+                    setLoading(false);
                 }
                 else {
                     toast.error(data.error);
@@ -21,6 +25,17 @@ const Services = () => {
             .catch(err => toast.error(err.message))
 
     }, [])
+
+    if (loading) {
+        return <div className="flex justify-center my-10">
+            <Button color="gray">
+                <Spinner aria-label="Alternate spinner button example" size='xl' />
+                <span className="pl-3 text-lg">
+                    Loading.....
+                </span>
+            </Button>
+        </div>
+    }
 
     return (
         <div className='my-7'>

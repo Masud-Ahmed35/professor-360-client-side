@@ -1,3 +1,4 @@
+import { Button, Spinner } from 'flowbite-react';
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
@@ -7,8 +8,13 @@ const PrivateRoutes = ({ children }) => {
     const location = useLocation();
 
     if (loading) {
-        return <div>
-            <p className='text-5xl'>Loading........</p>
+        return <div className="flex justify-center my-10">
+            <Button color="gray">
+                <Spinner aria-label="Alternate spinner button example" size='xl' />
+                <span className="pl-3 text-lg">
+                    Loading.....
+                </span>
+            </Button>
         </div>
     }
     if (user && user?.uid) {

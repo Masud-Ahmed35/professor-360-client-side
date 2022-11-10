@@ -1,6 +1,6 @@
 import { Button, Label, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import login from '../../assets/images/login.png'
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
@@ -11,6 +11,9 @@ import { toast } from 'react-toastify';
 
 const Register = () => {
     const { googleLogin, gitHubLogin, createUser, addNameAndPhoto } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const googleProvider = new GoogleAuthProvider();
     const gitHubProvider = new GithubAuthProvider();
@@ -22,7 +25,8 @@ const Register = () => {
         googleLogin(googleProvider)
             .then(result => {
                 console.log(result.user);
-                toast.success('Login Successful With Google')
+                toast.success('Login Successful With Google');
+                navigate(from, { replace: true });
             })
             .catch(error => console.error(error.message))
     }
@@ -34,7 +38,8 @@ const Register = () => {
         gitHubLogin(gitHubProvider)
             .then(result => {
                 console.log(result.user);
-                toast.success('Login Successful With GitHub')
+                toast.success('Login Successful With GitHub');
+                navigate(from, { replace: true });
             })
             .catch(error => toast.error(error.message))
     }
@@ -54,7 +59,9 @@ const Register = () => {
                 toast.success('Successfully Created Your Account');
 
                 addNameAndPhoto(user?.name, user?.photo)
-                    .then(() => { })
+                    .then(() => {
+                        navigate(from, { replace: true });
+                    })
                     .catch(error => toast.error(error.message))
             })
             .catch(error => toast.error(error.message))
