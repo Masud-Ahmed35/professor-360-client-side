@@ -16,7 +16,7 @@ const ServiceDetails = () => {
     const { _id, name, image, type, duration, price, description } = data.data;
 
     useEffect(() => {
-        fetch(`http://localhost:7007/reviews/${_id}`)
+        fetch(`https://assignment-11-server-mu.vercel.app/reviews/${_id}`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -47,7 +47,7 @@ const ServiceDetails = () => {
             photo: user?.photoURL,
             time: time
         }
-        fetch(`http://localhost:7007/reviews`, {
+        fetch(`https://assignment-11-server-mu.vercel.app/reviews`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

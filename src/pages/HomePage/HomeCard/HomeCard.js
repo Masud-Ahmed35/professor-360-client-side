@@ -8,7 +8,7 @@ const HomeCard = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:7007/home-services`)
+        fetch(`https://assignment-11-server-mu.vercel.app/home-services`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {

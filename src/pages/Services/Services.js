@@ -13,7 +13,7 @@ const Services = () => {
     useTitle('Services');
 
     useEffect(() => {
-        fetch(`http://localhost:7007/services?page=${page}&size=${size}`)
+        fetch(`https://assignment-11-server-mu.vercel.app/services?page=${page}&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {

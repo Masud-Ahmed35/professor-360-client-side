@@ -15,7 +15,7 @@ const MyReviews = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:7007/reviews?email=${user?.email}`, {
+        fetch(`https://assignment-11-server-mu.vercel.app/reviews?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -46,7 +46,7 @@ const MyReviews = () => {
         const confirmation = window.confirm('Are you sure, You want to delete this review?');
 
         if (confirmation) {
-            fetch(`http://localhost:7007/reviews/${id}`, {
+            fetch(`https://assignment-11-server-mu.vercel.app/reviews/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

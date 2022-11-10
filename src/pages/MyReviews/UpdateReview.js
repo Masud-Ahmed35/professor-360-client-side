@@ -12,7 +12,7 @@ const UpdateReview = () => {
     const { id } = router;
 
     useEffect(() => {
-        fetch(`http://localhost:7007/single-review/${id}`)
+        fetch(`https://assignment-11-server-mu.vercel.app/single-review/${id}`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -33,7 +33,7 @@ const UpdateReview = () => {
             message: event.target.message.value,
             time: time
         }
-        fetch(`http://localhost:7007/reviews/${id}`, {
+        fetch(`https://assignment-11-server-mu.vercel.app/reviews/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

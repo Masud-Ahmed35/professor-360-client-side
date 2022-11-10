@@ -20,7 +20,7 @@ const AddService = () => {
             description: event.target.description.value,
             time: time
         }
-        fetch(`http://localhost:7007/add-service`, {
+        fetch(`https://assignment-11-server-mu.vercel.app/add-service`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
