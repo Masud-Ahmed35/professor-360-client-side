@@ -22,6 +22,7 @@ const Headers = () => {
         <Navbar
             fluid={true}
             rounded={true}
+            className='mt-3'
         >
             <Link to='/' className='flex justify-center items-center'>
                 <img
@@ -29,29 +30,29 @@ const Headers = () => {
                     className="mr-3 h-14"
                     alt="Website Logo"
                 />
-                <span className="self-center whitespace-nowrap text-2xl font-bold italic">
+                <span className="self-center font-mono text-2xl font-extrabold italic">
                     Professor 360
                 </span>
             </Link>
             <Navbar.Toggle />
             <Navbar.Collapse>
-                <NavLink to='/home' className='flex items-center'>
+                <NavLink to='/home' className='flex items-center  text-base'>
                     Home
                 </NavLink>
-                <NavLink to='/services' className='flex items-center'>
+                <NavLink to='/services' className='flex items-center text-base'>
                     Services
                 </NavLink>
-                <NavLink to='/blog' className='flex items-center'>
+                <NavLink to='/blog' className='flex items-center text-base'>
                     Blog
                 </NavLink>
                 <>
                     {
                         user?.uid ?
                             <>
-                                <NavLink to='/my-reviews' className='flex items-center'>
+                                <NavLink to='/my-reviews' className='flex items-center text-base'>
                                     My Reviews
                                 </NavLink>
-                                <NavLink to='/add-service' className='flex items-center'>
+                                <NavLink to='/add-service' className='flex items-center text-base'>
                                     Add Service
                                 </NavLink>
                                 <Button onClick={handleLogOut} color='gray'>
@@ -79,7 +80,7 @@ const Headers = () => {
                             </>
                             :
                             <>
-                                <NavLink to='/login' className='flex items-center'>
+                                <NavLink to='/login' className='flex items-center text-base'>
                                     Login
                                 </NavLink>
                             </>
