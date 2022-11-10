@@ -16,9 +16,9 @@ This is online based review-given web application. Here, you can choose a servic
 * Fully Responsive
 * User Friendly
 
-### Live Website Link: 
+### Live Website Link: https://professor360-13eac.web.app/
 
-### Api Link: 
+### Server Link: https://assignment-11-server-mu.vercel.app/
 ## Resources & Credits
 * [ReactJs](https://reactjs.org/).
 * [Tailwind css](https://tailwindcss.com/docs/installation)
